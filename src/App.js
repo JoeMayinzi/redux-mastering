@@ -1,8 +1,11 @@
 import React from "react";
 import PostForm from "./components/PostForm";
 import User from "./components/User";
+import { useSelector } from "react-redux";
 
 const App = () => {
+  const posts = useSelector((state) => state.postReducer);
+  console.log(posts);
   return (
     <div>
       <h1>Extreme</h1>
