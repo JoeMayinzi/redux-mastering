@@ -9,7 +9,7 @@ const Post = ({ post }) => {
 
   return (
     <div className="post">
-      {!isEmpty(user) && user.pseudo === user.author && (
+      {!isEmpty(user) && user.pseudo === post.author && (
         <div className="edit-delete">
           <img
             src="./icons/edit.svg"
