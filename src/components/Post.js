@@ -1,11 +1,27 @@
 import React, { useState } from "react";
 import Like from "./Like";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { isEmpty } from "./Utils";
+import { editPost } from "../actions/post.action";
 
 const Post = ({ post }) => {
   const [editToggle, setEditToggle] = useState(false);
   const user = useSelector((state) => state.userReducer);
+  const [editContent, setEditContent] = useState(post.content);
+  const dispatch = useDispatch();
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+
+    const postEditData = {
+      author: user.pseudo,
+      title: post.title,
+      likes: post.likes,
+      content: editContent,
+    };
+
+    dispatch(editPost(postEditData));
+  };
 
   return (
     <div className="post">
@@ -28,8 +44,14 @@ const Post = ({ post }) => {
       />
 
       {editToggle ? (
-        <form>
-          <textarea autoFocus={true} defaultValue={post.content}></textarea>
+        <form onSubmit={(e) => handleEdit(e)}>
+          <textarea
+            autoFocus={true}
+            defaultValue={post.content}
+            onChange={(e) => {
+              setEditContent(e.target.value);
+            }}
+          ></textarea>
           <input type="submit" value="Valider modification" />
         </form>
       ) : (
