@@ -22,10 +22,10 @@
       "id": "3"
     },
     {
-      "author": "user42",
       "title": "Comment utiliser useDispacth et useSelector dans une app React ?",
-      "content": "We import the following hooks from React Redux: useSelector and useDispatch. Before, we had to import connect() from React Redux and wrap our components with it in order to map state to props and map dispatch to props.\nThe equivalent of map state to props is useSelector. It takes in a function argument that returns the part of the state that you want. In this case, we have the following keys from state defined: counter and currentUser. We defined these earlier when combining reducers.",
-      "id": "cegflo5"
+      "author": "user42",
+      "id": "cegflo5",
+      "content": "Reference sir la doc et aussi sur des chaines youtube"
     },
     {
       "author": "user42",

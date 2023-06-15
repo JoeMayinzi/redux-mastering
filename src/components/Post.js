@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Like from "./Like";
 import { useDispatch, useSelector } from "react-redux";
 import { isEmpty } from "./Utils";
-import { editPost } from "../actions/post.action";
+import { deletePost, editPost } from "../actions/post.action";
 
 const Post = ({ post }) => {
   const [editToggle, setEditToggle] = useState(false);
@@ -10,17 +10,21 @@ const Post = ({ post }) => {
   const [editContent, setEditContent] = useState(post.content);
   const dispatch = useDispatch();
 
+  console.log(user);
+
   const handleEdit = (e) => {
     e.preventDefault();
 
     const postEditData = {
-      author: user.pseudo,
       title: post.title,
+      author: user.pseudo,
       likes: post.likes,
+      id: post.id,
       content: editContent,
     };
 
     dispatch(editPost(postEditData));
+    setEditToggle(false);
   };
 
   return (
@@ -32,7 +36,11 @@ const Post = ({ post }) => {
             alt="edit"
             onClick={() => setEditToggle(!editToggle)}
           />
-          <img src="./icons/delete.svg" alt="delete" />
+          <img
+            onClick={() => dispatch(deletePost(post.id))}
+            src="./icons/delete.svg"
+            alt="delete"
+          />
         </div>
       )}
 
